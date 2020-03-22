@@ -27,25 +27,13 @@ while True:
 	)
 	d_out, d_error = date.communicate()
 
-	# print '\n\ntimeT  : %s'%d_out
-	#print 'timeE : %s\n'%d_error
-	#print 'ping :\n %s'%p_out
-	#print 'ping :\n %s'%select_ping_summary_line(p_out)
         ping_summary = summary_from_full_report(p_out)
-	# print 'ping :\n %d %d %f'%ping_summary
-	#print 'ping parsed:\n %d %d %s'%(unpack_ping(p_out))
-	#print 'pingE:\n %s'%p_error
-
-        # data_point = d_out.strip('\n') + ' ' + targer + ' ' + str(ping_summary[0]) + ' ' + str(ping_summary[1]) + ' ' + str(ping_summary[2])
         data_point = format_data_point(d_out, host, target, ping_summary)
-        # print 'give you a debug show'
         print data_point
+
 	fname = 'pings-DEV-'+d_out.split()[0]+'.dat'
 	bufsize=9
 	f = open(fname, 'a', buffering=bufsize) 	
-	#f.write('\n\ntimeT : %s'%d_out)
-	#f.write('timeE : %s\n'%d_error)
-	#f.write('ping :\n %s'%p_out)
 	f.write(data_point)
 
 	if count%10==0:
