@@ -3,12 +3,10 @@ import subprocess
 from utils import *
 
 targets = ['google.com','letemps.ch']
-#target = targets[0]
+header  = 'date time host target transm received percdrop\n'
 
 host = get_host()
 count=0
-
-# ADD A HEADER LINE TO THE .DAT file
 
 
 while True:
@@ -34,9 +32,11 @@ while True:
                 data_point = format_data_point(d_out, host, target, ping_summary)
                 print data_point
 
-	        fname = 'pings-DEV-'+d_out.split()[0]+'.dat'
 	        bufsize=9
-	        f = open(fname, 'a', buffering=bufsize) 	
+                fname = 'pings-DEV-'+d_out.split()[0]+'.dat'
+                f = open(fname, 'a', buffering=bufsize)
+                if count==1:
+                        f.write(header)
 	        f.write(data_point)
 
 
