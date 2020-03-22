@@ -4,9 +4,8 @@ from utils import *
 
 targets = ['google.com','letemps.ch']
 header  = 'date time host target transm received percdrop\n'
-
-host = get_host()
-count=0
+host    = get_host()
+count   = 0
 
 
 while True:
@@ -38,8 +37,6 @@ while True:
                 if count==1:
                         f.write(header)
 	        f.write(data_point)
-
-
 
         
 	if count%10==0:
