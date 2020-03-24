@@ -40,6 +40,7 @@ while True:
 
         
 	if count%10==0:
+		count=0
 		f.flush()
 
 	f.close()
