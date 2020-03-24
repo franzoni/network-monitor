@@ -3,10 +3,10 @@ import subprocess
 from utils import *
 
 targets = ['google.com','letemps.ch']
-header  = 'date time host target transm received percdrop\n'
+header  = 'date time host target transm received percdrop\n\n'
 host    = get_host()
 count   = 0
-
+out_dir = get_outout_path()
 
 while True:
 
@@ -29,18 +29,22 @@ while True:
 
                 ping_summary = summary_from_full_report(p_out)
                 data_point = format_data_point(d_out, host, target, ping_summary)
-                print data_point
+
+                if count%30 ==0:
+                        print data_point
 
 	        bufsize=9
-                fname = 'pings-DEV-'+d_out.split()[0]+'.dat'
-                f = open(fname, 'a', buffering=bufsize)
+                fname  = 'pings-'+d_out.split()[0]+'.dat'
+                fwpath = out_dir+fname
+                f = open(fwpath, 'a', buffering=bufsize)
                 if count==1:
                         f.write(header)
 	        f.write(data_point)
 
         
 	if count%10==0:
-		count=0
+		if count%120 ==0:
+                        count=0
 		f.flush()
 
 	f.close()
