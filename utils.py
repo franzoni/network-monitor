@@ -19,9 +19,9 @@ def format_data_point(d_out, host, target, ping_summary):
 
 
 def encode_host(hostname_out):
-        if 'Giovannis-MacBook-Pro-619.local' in hostname_out:
+        if    'Giovannis-MacBook-Pro-619.local' in hostname_out:
                 return 'gfmac'
-        elif  'Giovannis-MacBook-Pro-619.local' in hostname_out:
+        elif  'Annes-MacBook-Pro.local' in hostname_out:
                 return 'admac'
         else:
                 return 'unkn'
