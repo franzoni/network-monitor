@@ -20,9 +20,9 @@ def format_data_point(d_out, host, target, ping_summary):
 
 def encode_host(hostname_out):
         if 'Giovannis-MacBook-Pro-619.local' in hostname_out:
-                return 'gf_mac'
+                return 'gfmac'
         elif  'Giovannis-MacBook-Pro-619.local' in hostname_out:
-                return 'ad_mac'
+                return 'admac'
         else:
                 return 'unkn'
 
@@ -40,9 +40,9 @@ def get_host():
 def get_outout_path():
         '''returns target directory for writing files, based on  discovered host'''
         host     = get_host()
-        if   host == 'gf_mac':
+        if   host == 'gfmac':
                 return '/Users/franzoni/Dropbox/Home/radio-tv/ping-tests/'
-        elif host == 'ad_mac':
+        elif host == 'admac':
                 return '/Users/dabrowski/Dropbox/Home/radio-tv/ping-tests/'
         else:
                 return './'

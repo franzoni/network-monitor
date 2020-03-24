@@ -34,7 +34,7 @@ while True:
                         print data_point
 
 	        bufsize=9
-                fname  = 'pings-'+d_out.split()[0]+'.dat'
+                fname  = 'pings-'+host+'-'+d_out.split()[0]+'.dat'
                 fwpath = out_dir+fname
                 f = open(fwpath, 'a', buffering=bufsize)
                 if count==1:
