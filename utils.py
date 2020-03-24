@@ -43,7 +43,7 @@ def get_outout_path():
         if   host == 'gfmac':
                 return '/Users/franzoni/Dropbox/Home/radio-tv/ping-tests/'
         elif host == 'admac':
-                return '/Users/dabrowski/Dropbox/Home/radio-tv/ping-tests/'
+                return '/Users/dabrows/Dropbox/Home/radio-tv/ping-tests/'
         else:
                 return './'
 
