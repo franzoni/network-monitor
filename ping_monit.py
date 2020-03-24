@@ -8,11 +8,25 @@ host    = get_host()
 count   = 0
 out_dir = get_outout_path()
 
+
+# first opening; following opening will be withing the infinite loop
+date = subprocess.Popen(
+	["date", "+%F %T"],
+	stdout = subprocess.PIPE,
+stderr = subprocess.PIPE
+)
+d_out, d_error = date.communicate()
+fname  = 'pings-'+host+'-'+d_out.split()[0]+'.dat'
+fwpath = out_dir+fname
+bufsize=46000
+file = open(fwpath, 'a', buffering=bufsize)
+
+
+
 while True:
 
-	count+=1
-
         for target in targets:
+	        count+=1
 	        ping = subprocess.Popen(
 	                ["ping", "-c", "10", "-i", "0.1", target],
 	                stdout = subprocess.PIPE,
@@ -33,18 +47,22 @@ while True:
                 if count%30 ==0:
                         print data_point
 
-	        bufsize=9
                 fname  = 'pings-'+host+'-'+d_out.split()[0]+'.dat'
                 fwpath = out_dir+fname
-                f = open(fwpath, 'a', buffering=bufsize)
+
+                # once every minute re-open the file, to pick up a date change, if there is
+                #                   and flush to disk
+                if count%60 ==0:
+                        file.flush()
+                        file = open(fwpath, 'a', buffering=bufsize)
+
                 if count==1:
-                        f.write(header)
-	        f.write(data_point)
+                        file.write(header)
+	        file.write(data_point)
 
         
-	if count%10==0:
-		if count%120 ==0:
-                        count=0
-		f.flush()
+	#if count%10==0:
+	if count%3600 ==0:
+                count=0
 
-	f.close()
+file.close()
