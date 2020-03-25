@@ -13,9 +13,9 @@ out_dir = get_outout_path()
 date = subprocess.Popen(
 	["date", "+%F %T"],
 	stdout = subprocess.PIPE,
-stderr = subprocess.PIPE
-)
+        stderr = subprocess.PIPE )
 d_out, d_error = date.communicate()
+
 fname  = 'pings-'+host+'-'+d_out.split()[0]+'.dat'
 fwpath = out_dir+fname
 bufsize=46000
