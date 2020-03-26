@@ -9,9 +9,14 @@ def unpack_summary_line(the_line):
 def select_ping_summary_line(ping_report):
         split_report = ping_report.split('\n')
         relevant_line = [u for u in split_report if 'packets transmitted' in u]
-        return relevant_line[0]
-
-
+        if len( relevant_line ):
+                return relevant_line[0]
+        else:
+                print("** ISSUE in ping report, which is: ")
+                print(ping_report)
+                print("** ISSUE in ping report, returning asterisks (format violation)")
+                return '* * * * * * *'
+                
 def format_data_point(d_out, host, target, ping_summary):
         return d_out.strip('\n') + ' ' + host + ' ' + target + ' ' + str(ping_summary[0]) \
                 + ' ' + str(ping_summary[1]) + ' ' + str(ping_summary[2]) + '\n'
