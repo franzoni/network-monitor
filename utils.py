@@ -28,6 +28,8 @@ def encode_host(hostname_out):
                 return 'gfmac'
         elif  'Annes-MacBook-Pro.local' in hostname_out:
                 return 'admac'
+        elif  'ANNEs-MacBook-Pro-4.local' in hostname_out:
+                return 'admaco'
         else:
                 return 'unkn'
 
@@ -47,7 +49,7 @@ def get_outout_path():
         host     = get_host()
         if   host == 'gfmac':
                 return '/Users/franzoni/Dropbox/Home/radio-tv/ping-tests/'
-        elif host == 'admac':
+        elif host == 'admac' or host == 'admaco':
                 return '/Users/dabrows/Dropbox/Home/radio-tv/ping-tests/'
         else:
                 return './'
