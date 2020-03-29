@@ -12,10 +12,10 @@ def select_ping_summary_line(ping_report):
         if len( relevant_line ):
                 return relevant_line[0]
         else:
-                print("** ISSUE in ping report, which is: ")
+                print("\n** ISSUE in ping report (report format violation), which is: ")
                 print(ping_report)
-                print("** ISSUE in ping report, returning asterisks (format violation)")
-                return '* * * * * * *'
+                print("\n** ISSUE in ping report, returning hard-coded line with negatice received (format violation)")
+                return '10 packet tronsmitted, -1 packets received, 100.0% packet loss'
                 
 def format_data_point(d_out, host, target, ping_summary):
         return d_out.strip('\n') + ' ' + host + ' ' + target + ' ' + str(ping_summary[0]) \
