@@ -52,6 +52,8 @@ while True:
 
                 # once every minute re-open the file, to pick up a date change, if there is
                 #                   and flush to disk
+
+		# make this less frequent and possibly not deterministic
                 if count%600 ==0:
                         file.flush()
                         file = open(fwpath, 'a', buffering=bufsize)
