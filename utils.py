@@ -3,7 +3,16 @@ def summary_from_full_report(ping_report):
         return unpack_summary_line(relevant_line)
         
 def unpack_summary_line(the_line):
-        return int(the_line.split()[0]), int(the_line.split()[3]), float(the_line.split()[6].strip('%'))
+        try:
+                return int(the_line.split()[0]), int(the_line.split()[3]), float(the_line.split()[6].strip('%'))
+        except ValueError:
+                print('ValueError has occurred')
+                print('the_line is: %s'%the_line)
+                print('the_line was split like this: %s,   %s,  %s'%(the_line.split()[0],the_line.split()[3],the_line.split()[6].strip('%') ) )
+        except:
+                print('An exception has occurred (not ValueError)')
+                print('the_line is: %s'%the_line)
+                print('the_line was split like this: %s,   %s,  %s'%(the_line.split()[0],the_line.split()[3],the_line.split()[6].strip('%') ) )
 
 
 def select_ping_summary_line(ping_report):
